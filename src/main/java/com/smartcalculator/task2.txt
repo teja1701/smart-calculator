@@ -1,0 +1,1 @@
+StringBuilder is preferred in loops for better memory management because it reuses the same object instead of creating new objects.
