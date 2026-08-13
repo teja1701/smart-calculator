@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void Main(String[] args) {
+    public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to Smart calculator");
@@ -15,26 +15,32 @@ public class Main {
             System.out.print("Enter first number (or exit): ");
             String input = sc.nextLine().trim();
             if (input.equalsIgnoreCase("exit")) {break;}
-            double a = Double.parseDouble(input);
+            double first_num = Double.parseDouble(input);
 
             System.out.print("Enter operator (+ - * / %): ");
-            String op = sc.nextLine().trim();
+            String operator = sc.nextLine().trim();
 
             System.out.print("Enter second number: ");
-            double b = Double.parseDouble(sc.nextLine().trim());
+            double second_num = Double.parseDouble(sc.nextLine().trim());
 
-            double result = switch (op) {
-                case "+" -> a + b;
-                case "-" -> a - b;
-                case "*" -> a * b;
+            double result = switch (operator) {
+                case "+" -> first_num + second_num;
+                case "-" -> first_num - second_num;
+                case "*" -> first_num * second_num;
                 case "/" -> {
-                    if (b == 0) {
+                    if (second_num == 0) {
                         System.out.println("Error: INVALID operation(/ by zero)");
                         yield Double.NaN;
                     }
-                    yield a / b;
+                    yield first_num / second_num;
                 }
-                case "%" -> a % b;
+                case "%" -> {
+                    if (second_num == 0) {
+                        System.out.println("Error: Division by zero");
+                        yield Double.NaN;
+                    }
+                    yield first_num % second_num;
+                }
                 default -> {
                     System.out.println("Unknown operator");
                     yield Double.NaN;
