@@ -1,5 +1,9 @@
 package com.savoira;
 
+/**
+ * calculates simple calculation
+ * just holds the data but doesn't perform any calculation here
+ */
 public class Operation {
 
     private double firstNumber;
