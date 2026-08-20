@@ -65,6 +65,11 @@ public class Main {
         scanner.close();
     }
 
+    /**
+     * for checking valid operators
+     * @param operator - which operator to check
+     * @return true if operator is valid
+     */
     private static boolean isValidOperator(String operator) {
         return (operator.equals("+") || operator.equals("-") || operator.equals("*") || operator.equals("/") || operator.equals("%"));
     }
