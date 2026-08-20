@@ -34,9 +34,7 @@ public class Main {
             String operator = scanner.nextLine().trim();
 
             System.out.print("Enter second number: ");
-            double secondNumber = Double.parseDouble(
-                    scanner.nextLine().trim()
-            );
+            double secondNumber = Double.parseDouble(scanner.nextLine().trim());
 
             Operation operation = new Operation(firstNumber, operator, secondNumber);
 

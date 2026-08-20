@@ -17,26 +17,17 @@ public class Calculator {
         double secondNumber = operation.getSecondNumber();
         String operator = operation.getOperator();
 
+        if ((operator.equals("/") || operator.equals("%")) && secondNumber == 0) {
+            System.out.println("Error: Division by zero");
+            return Double.NaN;
+        }
+
         return switch (operator) {
             case "+" -> firstNumber + secondNumber;
             case "-" -> firstNumber - secondNumber;
             case "*" -> firstNumber * secondNumber;
-            case "/" -> {
-                if (secondNumber == 0) {
-                    System.out.println(
-                            "Error: INVALID operation(/ by zero)"
-                    );
-                    yield Double.NaN;
-                }
-                yield firstNumber / secondNumber;
-            }
-            case "%" -> {
-                if (secondNumber == 0) {
-                    System.out.println("Error: Division by zero");
-                    yield Double.NaN;
-                }
-                yield firstNumber % secondNumber;
-            }
+            case "/" -> firstNumber / secondNumber;
+            case "%" -> firstNumber % secondNumber;
             default -> {
                 System.out.println("Unknown operator");
                 yield Double.NaN;
@@ -53,9 +44,7 @@ public class Calculator {
     public static double squareRoot(double number) {
 
         if (number < 0) {
-            System.out.println(
-                    "Error: cannot take square root of a negative number"
-            );
+            System.out.println("Error: cannot take square root of a negative number");
             return Double.NaN;
         }
 
@@ -72,9 +61,7 @@ public class Calculator {
     public static double percentage(double part, double whole) {
 
         if (whole == 0) {
-            System.out.println(
-                    "Error: cannot calculate percentage of zero"
-            );
+            System.out.println("Error: cannot calculate percentage of zero");
             return Double.NaN;
         }
 
