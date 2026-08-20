@@ -3,14 +3,11 @@ package com.savoira;
 import java.util.Scanner;
 
 /**
+ * Simple calculations are performed
  * Handles user input and displays calculation results.
  */
 public class Main {
 
-    /**
-     * Starts the SmartCalculator application.
-     * @param args command-line arguments
-     */
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -21,22 +18,41 @@ public class Main {
 
         while (true) {
 
-            System.out.print("Enter first number (or exit): ");
+            System.out.print("\nEnter first number (or exit): ");
             String input = scanner.nextLine().trim();
 
-            if (input.equalsIgnoreCase("exit")) {
-                break;
-            }
+            if (input.equalsIgnoreCase("exit")) break;
 
-            double firstNumber = Double.parseDouble(input);
+            double firstNumber;
+
+            try {
+                firstNumber = Double.parseDouble(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid number. Please try again.");
+                continue;
+            }
 
             System.out.print("Enter operator (+ - * / %): ");
             String operator = scanner.nextLine().trim();
 
-            System.out.print("Enter second number: ");
-            double secondNumber = Double.parseDouble(scanner.nextLine().trim());
+            if (!isValidOperator(operator)) {
+                System.out.println("Invalid operator. Please use +, -, *, /, or %.");
+                continue;
+            }
 
-            Operation operation = new Operation(firstNumber, operator, secondNumber);
+            System.out.print("Enter second number: ");
+            String secondInput = scanner.nextLine().trim();
+
+            double secondNumber;
+
+            try {
+                secondNumber = Double.parseDouble(secondInput);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid number. Please try again.");
+                continue;
+            }
+
+            Operation operation = new Operation(firstNumber,operator,secondNumber);
 
             double result = calculator.calculate(operation);
 
@@ -47,5 +63,9 @@ public class Main {
 
         System.out.println("Goodbye!");
         scanner.close();
+    }
+
+    private static boolean isValidOperator(String operator) {
+        return (operator.equals("+") || operator.equals("-") || operator.equals("*") || operator.equals("/") || operator.equals("%"));
     }
 }
