@@ -15,7 +15,6 @@ public abstract class Loan {
     }
 
     public abstract double calculateEMI();
-
     public abstract String loanType();
 
     public void printSummary() {
@@ -27,4 +26,17 @@ public abstract class Loan {
         System.out.printf("EMI: %.2f%n", calculateEMI());
         System.out.println();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {return true;}
+        if (!(obj instanceof Loan other)) {return false;}
+        return loanId.equalsIgnoreCase(other.loanId);
+    }
+
+    @Override
+    public int hashCode() {
+        return loanId.toLowerCase().hashCode();
+    }
+
 }

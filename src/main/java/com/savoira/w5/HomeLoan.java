@@ -1,10 +1,10 @@
 package com.savoira.w5;
 
-public class HomeLoan extends Loan {
+public class HomeLoan extends Loan implements Auditable {
 
     private int tenureMonths;
 
-    public HomeLoan(String loanId, String applicantName, double principal, double annualRate, int tenureMonths) {
+    public HomeLoan (String loanId, String applicantName, double principal, double annualRate, int tenureMonths) {
         super(loanId, applicantName, principal, annualRate);
         this.tenureMonths = tenureMonths;
     }
@@ -18,4 +18,10 @@ public class HomeLoan extends Loan {
 
     @Override
     public String loanType() {return "Home Loan";}
+
+    @Override
+    public String auditSummary() {
+        return auditPrefix() + " " + loanId;
+    }
+
 }
