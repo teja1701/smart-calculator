@@ -16,92 +16,47 @@ public class Main {
         System.out.println("Type 'exit' to quit.");
 
         while (true) {
-
-            System.out.print("\nEnter first number (or exit): ");
-            String input = scanner.nextLine().trim();
-
-            if (input.equalsIgnoreCase("exit")) {break;}
-
-            double firstNumber;
-
             try {
-                firstNumber = Double.parseDouble(input);
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid number. Please try again.");
-                continue;
-            }
+                System.out.print("\nEnter first number (or exit): ");
+                String input = scanner.nextLine().trim();
 
-            System.out.print("Enter operator (+ - * / %): ");
-            String operator = scanner.nextLine().trim();
+                if (input.equalsIgnoreCase("exit")) {break;}
 
-            if (!isValidOperator(operator)) {
-                System.out.println("Invalid operator. Please use +, -, *, /, or %.");
-                continue;
-            }
+                double firstNumber = Double.parseDouble(input);
 
-            System.out.print("Enter second number: ");
-            String secondInput = scanner.nextLine().trim();
+                System.out.print("Enter operator (+ - * / %): ");
+                String operator = scanner.nextLine().trim();
 
-            double secondNumber;
+                System.out.print("Enter second number: ");
+                double secondNumber = Double.parseDouble(scanner.nextLine().trim());
 
-            try {
-                secondNumber = Double.parseDouble(secondInput);
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid number. Please try again.");
-                continue;
-            }
+                Calculable operation;
 
-            /*
-             * Create the appropriate operation object
-             * based on the operator entered by the user.
-             */
-            if (operator.equals("+")) {
-                Calculable operation = new Addition(firstNumber, secondNumber);
-                displayResult(operation);
-
-            } else if (operator.equals("-")) {
-                Calculable operation = new Subtraction(firstNumber, secondNumber);
-                displayResult(operation);
-
-            } else if (operator.equals("*")) {
-                Calculable operation = new Multiplication(firstNumber, secondNumber);
-                displayResult(operation);
-
-            } else if (operator.equals("/")) {
-                Calculable operation = new Division(firstNumber, secondNumber);
-                displayResult(operation);
-
-            } else if (operator.equals("%")) {
-                if (secondNumber == 0) {
-                    System.out.println("Error: Division by zero");
-                    continue;
+                if (operator.equals("+")) {
+                    operation = new Addition(firstNumber, secondNumber);
+                } else if (operator.equals("-")) {
+                    operation = new Subtraction(firstNumber, secondNumber);
+                } else if (operator.equals("*")) {
+                    operation = new Multiplication(firstNumber, secondNumber);
+                } else if (operator.equals("/")) {
+                    operation = new Division(firstNumber, secondNumber);
+                } else if (operator.equals("%")) {
+                    operation = new Modulo(firstNumber, secondNumber);
+                } else {
+                    throw new InvalidOperationException("Unknown operator: " + operator);
                 }
 
-                double result = firstNumber % secondNumber;
+                double result = operation.calculate();
                 System.out.printf("Result: %.2f%n", result);
-            }
+
+            } catch (NumberFormatException e) {System.out.println("Please enter a valid number.");
+            } catch (DivisionByZeroException e) {System.out.println(e.getMessage());
+            } catch (InvalidOperationException e) {System.out.println(e.getMessage());
+
+            } finally {System.out.println("------------------------------------");}
         }
 
         System.out.println("Goodbye!");
         scanner.close();
-    }
-
-    /**
-     * Displays the result of a calculable operation.
-     *
-     * @param operation operation to calculate
-     */
-    private static void displayResult(Calculable operation) {
-        double result = operation.calculate();
-        if (!Double.isNaN(result)) {System.out.printf("Result: %.2f%n", result);}
-    }
-
-    /**
-     * Checks whether the entered operator is valid.
-     * @param operator operator entered by the user
-     * @return true if the operator is valid
-     */
-    private static boolean isValidOperator(String operator) {
-        return operator.equals("+") || operator.equals("-") || operator.equals("*") || operator.equals("/") || operator.equals("%");
     }
 }

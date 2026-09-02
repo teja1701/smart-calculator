@@ -1,5 +1,8 @@
 package com.savoira;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Performs division of two numbers.
  */
@@ -12,18 +15,18 @@ public class Division extends Operation implements Calculable {
     public Division(double firstNumber, double secondNumber) { super(firstNumber, secondNumber);}
 
     /**
-     * @return quotient of the two numbers, or NaN if dividing by zero
+     * @return quotient of the two numbers
+     * @throws DivisionByZeroException if the second number is zero
      */
     @Override
     public double calculate() {
-        if (getSecondNumber() == 0) {
-            System.out.println("Error: Division by zero");
-            return Double.NaN;
-        }
 
-        return getFirstNumber() / getSecondNumber();
+        if (getSecondNumber() == 0) {throw new DivisionByZeroException();}
+
+        BigDecimal a = BigDecimal.valueOf(getFirstNumber());
+        BigDecimal b = BigDecimal.valueOf(getSecondNumber());
+        return a.divide(b, 10, RoundingMode.HALF_UP).doubleValue();
     }
-
 
     @Override
     public String toString() {
