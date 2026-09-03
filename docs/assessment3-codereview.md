@@ -16,7 +16,7 @@ public void processPayment(double amount) {
 5. Payment deduction is not implemented – The account deduction is only written as a comment.
 
 # Suggested method:
-```javapublic void processPayment(double amount) {
+public void processPayment(double amount) {
     if (amount <= 0) {
         throw new IllegalArgumentException("Payment amount must be greater than zero");
     }
@@ -31,7 +31,7 @@ public void processPayment(double amount) {
 
     account.setBalance(account.getBalance() - amount);
     System.out.println("Payment processed successfully.");
-}```
+}
 
 1. Used specific exceptions instead of the general Exception.
 2. Added clear error messages.
