@@ -26,37 +26,33 @@ public class Main {
 
                 System.out.print("Enter operator (+ - * / %): ");
                 String operator = scanner.nextLine().trim();
+                if (!operator.equals("+") && !operator.equals("-") && !operator.equals("*") && !operator.equals("/") && !operator.equals("%")) {
+                    throw new InvalidOperationException("Unknown operator: " + operator);
+                }
 
                 System.out.print("Enter second number: ");
                 double secondNumber = Double.parseDouble(scanner.nextLine().trim());
 
-                Calculable operation;
-
-                if (operator.equals("+")) {
-                    operation = new Addition(firstNumber, secondNumber);
-                } else if (operator.equals("-")) {
-                    operation = new Subtraction(firstNumber, secondNumber);
-                } else if (operator.equals("*")) {
-                    operation = new Multiplication(firstNumber, secondNumber);
-                } else if (operator.equals("/")) {
-                    operation = new Division(firstNumber, secondNumber);
-                } else if (operator.equals("%")) {
-                    operation = new Modulo(firstNumber, secondNumber);
-                } else {
-                    throw new InvalidOperationException("Unknown operator: " + operator);
-                }
-
-                double result = operation.calculate();
+                double result = getResult(operator, firstNumber, secondNumber);
                 System.out.printf("Result: %.2f%n", result);
 
             } catch (NumberFormatException e) {System.out.println("Please enter a valid number.");
-            } catch (DivisionByZeroException e) {System.out.println(e.getMessage());
-            } catch (InvalidOperationException e) {System.out.println(e.getMessage());
-
-            } finally {System.out.println("------------------------------------");}
+            } catch (DivisionByZeroException | InvalidOperationException e) {System.out.println(e.getMessage());
+            } finally {System.out.println("------------------------");}
         }
 
         System.out.println("Goodbye!");
         scanner.close();
+    }
+
+    private static double getResult(String operator, double firstNumber, double secondNumber) {
+        Calculable operation = switch (operator) {
+            case "+" -> new Addition(firstNumber, secondNumber);
+            case "-" -> new Subtraction(firstNumber, secondNumber);
+            case "*" -> new Multiplication(firstNumber, secondNumber);
+            case "/" -> new Division(firstNumber, secondNumber);
+            default -> new Modulo(firstNumber, secondNumber);
+        };
+        return operation.calculate();
     }
 }
