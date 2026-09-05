@@ -5,35 +5,6 @@ package com.savoira;
  */
 public class Calculator {
 
-    /**
-     * Calculates the result of the given operation.
-     *
-     * @param operation the operation containing operands and operator
-     * @return the result of the calculation, or NaN for an invalid operation
-     */
-    public double calculate(Operation operation) {
-
-        double firstNumber = operation.getFirstNumber();
-        double secondNumber = operation.getSecondNumber();
-        String operator = operation.getOperator();
-
-        if ((operator.equals("/") || operator.equals("%")) && secondNumber == 0) {
-            System.out.println("Error: Division by zero");
-            return Double.NaN;
-        }
-
-        return switch (operator) {
-            case "+" -> firstNumber + secondNumber;
-            case "-" -> firstNumber - secondNumber;
-            case "*" -> firstNumber * secondNumber;
-            case "/" -> firstNumber / secondNumber;
-            case "%" -> firstNumber % secondNumber;
-            default -> {
-                System.out.println("Unknown operator");
-                yield Double.NaN;
-            }
-        };
-    }
 
     /**
      * Calculates the square root of a number.
