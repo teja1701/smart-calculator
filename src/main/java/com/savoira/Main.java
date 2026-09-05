@@ -1,6 +1,5 @@
 package com.savoira;
 
-import java.util.List;
 import java.util.Scanner;
 
 /**
