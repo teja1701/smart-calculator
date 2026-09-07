@@ -1,6 +1,5 @@
 #Task 1 
 Pseudocode for ATM withdrawal logic
-
 ```
 Set attempts = 0
 Set MAX_ATTEMPTS = 3
