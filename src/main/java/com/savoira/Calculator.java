@@ -11,6 +11,7 @@ public class Calculator {
      *
      * @param number the number whose square root is required
      * @return the square root
+     *
      */
     public static double squareRoot(double number) {
 
