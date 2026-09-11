@@ -19,15 +19,13 @@ public class Main {
                 System.out.print("\nEnter first number (or exit): ");
                 String input = scanner.nextLine().trim();
 
-                if (input.equalsIgnoreCase("exit")) {break;}
+                if (input.equalsIgnoreCase("exit")) break;
 
                 double firstNumber = Double.parseDouble(input);
 
                 System.out.print("Enter operator (+ - * / %): ");
                 String operator = scanner.nextLine().trim();
-                if (!operator.equals("+") && !operator.equals("-") && !operator.equals("*") && !operator.equals("/") && !operator.equals("%")) {
-                    throw new InvalidOperationException("Unknown operator: " + operator);
-                }
+                if (!isValidOperator(operator)) throw new InvalidOperationException("Unknown operator: " + operator);
 
                 System.out.print("Enter second number: ");
                 double secondNumber = Double.parseDouble(scanner.nextLine().trim());
@@ -42,6 +40,10 @@ public class Main {
 
         System.out.println("Goodbye!");
         scanner.close();
+    }
+
+    private static boolean isValidOperator(String operator) {
+        return operator.equals("+") || operator.equals("-") || operator.equals("*") || operator.equals("/") || operator.equals("%");
     }
 
     private static double getResult(String operator, double firstNumber, double secondNumber) {
