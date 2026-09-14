@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meridian Retail Bank</title>
+</head>
+
+<body>
+
+<header>
+    <h1>Meridian Retail Bank</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Accounts</a></li>
+        <li><a href="#">Transfers</a></li>
+        <li><a href="#">Loans</a></li>
+        <li><a href="#">Settings</a></li>
+    </ul>
+</nav>
+
+<main>
+
+    <section>
+        <h2>Account Summary</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th scope="col">Account Number</th>
+                <th scope="col">Type</th>
+                <th scope="col">Balance</th>
+                <th scope="col">Last Transaction</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>1234567890</td>
+                <td>Savings</td>
+                <td>₹85,450</td>
+                <td>₹2,500 credited</td>
+                <td>Active</td>
+            </tr>
+
+            <tr>
+                <td>9876543210</td>
+                <td>Checking</td>
+                <td>₹42,300</td>
+                <td>₹1,200 debited</td>
+                <td>Active</td>
+            </tr>
+
+            <tr>
+                <td>4567891230</td>
+                <td>Salary</td>
+                <td>₹1,25,000</td>
+                <td>₹50,000 credited</td>
+                <td>Frozen</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Recent Transactions</h2>
+
+        <ol>
+            <li>Salary credited to account</li>
+            <li>Electricity bill payment</li>
+            <li>ATM cash withdrawal</li>
+            <li>Online shopping payment</li>
+        </ol>
+    </section>
+
+</main>
+
+<aside>
+    <h2>Quick Transfer</h2>
+
+    <form>
+
+        <label for="recipient">Recipient account:</label>
+        <input
+                type="text"
+                id="recipient"
+                name="recipient"
+                required
+                minlength="6"
+        >
+
+        <label for="amount">Amount:</label>
+        <input
+                type="number"
+                id="amount"
+                name="amount"
+                min="1"
+                max="200000"
+                step="1"
+                required
+        >
+
+        <label for="remarks">Remarks:</label>
+        <input
+                type="text"
+                id="remarks"
+                name="remarks"
+                maxlength="50"
+        >
+
+        <button type="submit">Transfer Now</button>
+
+    </form>
+</aside>
+
+<footer>
+    <p>© 2025 Meridian Retail Bank | Powered by Savoira</p>
+</footer>
+
+</body>
+</html>
