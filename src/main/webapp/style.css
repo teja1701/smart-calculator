@@ -1,0 +1,122 @@
+nav {
+    display: flex;
+    flex-direction: row;
+    background: #1F3864;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 0 16px;
+}
+
+nav a:hover {
+    background: #0F7C7C;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #1F3864;
+    color: white;
+    font-weight: bold;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background: #EAF1FB;
+}
+
+tbody tr:nth-child(odd) {
+    background: white;
+}
+
+.frozen {
+    color: #C0504D;
+    font-weight: bold;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #C0C0C0;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+form input:focus {
+    outline: 2px solid #0F7C7C;
+    outline-offset: 0;
+}
+
+form button {
+    background: #1F3864;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+}
+
+form button:hover {
+    background: #12254F;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.container {
+    display: flex;
+}
+
+@media (max-width: 900px) {
+    .container {
+        flex-direction: row;
+    }
+
+    main {
+        width: 70%;
+    }
+
+    aside {
+        width: 30%;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+
+    main,
+    aside {
+        width: 100%;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    table {
+        font-size: 13px;
+    }
+}
