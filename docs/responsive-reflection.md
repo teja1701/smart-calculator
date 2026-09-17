@@ -1,0 +1,3 @@
+# Responsive Layout & Execution Reflection
+
+While the terminal-driven Java application enforces a synchronous, linear input sequence via blocking `Scanner` reads, a browser interface presents an asynchronous layout where users can interact with elements in any arbitrary order. Furthermore, the browser version leverages dynamic CSS media queries to reflow design structures seamlessly across varying screens, whereas the Java CLI is bound to a rigid, stream-based text output incapable of responsive visual adaptation. Crucially, the static browser version lacks the robust backend state management, custom exception-handling loops, and active arithmetic computation logic that are fully operational in the Java application.
