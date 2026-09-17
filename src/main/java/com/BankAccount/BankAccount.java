@@ -5,6 +5,7 @@ public class BankAccount {
     private int accountNumber;
     private String holderName;
     private double balance;
+    private int transactionCount;
 
     public BankAccount(int accountNumber, String holderName, double balance) {
         this.accountNumber = accountNumber;
@@ -19,15 +20,23 @@ public class BankAccount {
     }
 
     public void deposit(double amount) {
-        if (amount > 0) {
+        if (amount > 0 && amount <= BankConfig.MAX_DEPOSIT) {
             balance += amount;
+            transactionCount++;
             System.out.println("Deposited: " + amount);
+        } else {
+            System.out.println("Invalid deposit");
         }
     }
 
     public void withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
+        if (amount > 0
+                && amount <= balance
+                && amount <= BankConfig.MAX_WITHDRAWAL
+                && transactionCount < BankConfig.MAX_DAILY_TXN) {
+
             balance -= amount;
+            transactionCount++;
             System.out.println("Withdrawn: " + amount);
         } else {
             System.out.println("Invalid withdrawal");
@@ -38,6 +47,7 @@ public class BankAccount {
     public String toString() {
         return "ACC" + accountNumber +
                 " | " + holderName +
-                " | Balance: Rs." + balance;
+                " | Balance: Rs." + balance +
+                " | Txn: " + transactionCount;
     }
 }
